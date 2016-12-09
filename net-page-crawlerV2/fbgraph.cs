@@ -15,10 +15,17 @@ namespace net_page_crawlerV2
 
         public static string getPagePosts(string pageId)
         {
-            //Console.WriteLine("https://graph.facebook.com/v2.7/" + pageId + "/posts?access_token=" + clientId + "|" + clientSecret);
-
-
             return fbgraph.get("https://graph.facebook.com/v2.7/" + pageId + "/posts?access_token=" + clientId + "|" + clientSecret, "utf-8");
+        }
+
+        public static string getComments(string pageId)
+        {
+            return fbgraph.get("https://graph.facebook.com/v2.7/" + pageId + "/comments?access_token=" + clientId + "|" + clientSecret, "utf-8");
+        }
+
+        public static string getPagePosts(string pageId, string minDate, string maxDate)
+        {
+            return fbgraph.get("https://graph.facebook.com/v2.7/" + pageId + "/posts?since=" + minDate + "&until=" + maxDate + "&access_token=" + clientId + "|" + clientSecret, "utf-8");
         }
 
         private static string get(string url, string type)
